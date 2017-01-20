@@ -1,0 +1,13 @@
+
+
+section.password-container {
+
+    background-color: #18BC9C;
+    padding: 120px 0px;
+}
+
+.password-entry {
+
+    height: 70px;
+    font-size: 31px;
+}
