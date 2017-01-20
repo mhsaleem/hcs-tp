@@ -11,3 +11,7 @@ section.password-container {
     height: 70px;
     font-size: 31px;
 }
+
+.progress-custom{
+    height: 40px;
+}
