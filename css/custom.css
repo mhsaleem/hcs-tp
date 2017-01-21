@@ -67,3 +67,7 @@ section.pword-checkboxes > ul.tips > li.satisfied {
     color: #18BC9C;
     font-weight: bold;
 }
+
+.progress-custom{
+    height: 40px;
+}

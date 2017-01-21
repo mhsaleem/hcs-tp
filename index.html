@@ -19,10 +19,29 @@
     <!-- CustomCSS -->
     <link href="css/custom.css" type="text/css" rel="stylesheet">
 
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 
 
 <body>
+
+<!-- jQuery -->
+<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+
+<!-- jQuery Complexify -->
+
+<script type="text/javascript" src="libs/jquery/jquery.complexify.banlist.js"></script>
+<script type="text/javascript" src="libs/jquery/jquery.complexify.min.js"></script>
+
+
+
+<!-- MaterializeJS -->
+<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- CustomJS -->
+<script type="text/javascript" src="js/app.js"></script>
 
 
 <main id="app">
@@ -31,34 +50,26 @@
 
         <div class="container">
 
+            <a href="index.html">
+                <img src="img/logo.png" class="img-responsive center-block logo">
+            </a>
+
             <div class="row">
 
                 <div class="col-md-8 col-md-push-2">
 
-                    <a href="index.html">
-                        <img src="img/logo.png" class="img-responsive center-block logo">
-                    </a>
+                    <div class="form-group" id="password_input">
+                        <input class="form-control input-lg password-entry" id="password" type="password" placeholder="Enter Password">
+                    </div>
+
+                    <div class="progress progress-striped active progress-custom">
+                        <div id="complexity-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    </div>
 
                 </div>
 
             </div>
-
-            <!--/.logo-->
-
-            <div class="row">
-
-                <div class="col-md-8 col-md-push-2">
-
-                    <div class="form-group">
-                        <input class="form-control input-lg password-entry" type="text" placeholder="Check how strong is your password">
-                    </div>
-
-                </div>       <!--/.col-->
-
-            </div>      <!--/.row-->
-
-        </div>       <!--/.container-->
-
+        </div>
     </section>  <!--/.password-container-->
 
 
@@ -113,15 +124,6 @@
 
 </main>
 
-
-<!-- jQuery -->
-<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap -->
-<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- CustomJS -->
-<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 
