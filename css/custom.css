@@ -1,15 +1,71 @@
 
+body {
+
+    margin: 0;
+    padding-bottom: 40px;
+}
+
 
 section.password-container {
 
     background-color: #18BC9C;
-    padding: 120px 0px;
+    padding: 40px 0 120px;
 }
 
 .password-entry {
 
     height: 70px;
     font-size: 31px;
+    font-family: 'Lato', sans-serif;
+}
+
+.logo {
+
+    margin-bottom: 70px;
+}
+
+
+/* Checkboxes */
+
+section.pword-checkboxes {
+
+    width: 100%;
+    padding: 30px 15px;
+    margin-top: -30px;
+    background-color: #fff;
+
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+}
+
+section.pword-checkboxes > img.tips-dyno {
+
+    width: 330px;
+    display: block;
+    margin: 0 auto 40px;
+}
+
+section.pword-checkboxes > ul.tips {
+
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 23px;
+}
+
+section.pword-checkboxes > ul.tips > li {
+
+    margin-bottom: 15px;
+}
+
+section.pword-checkboxes > ul.tips > li.unsatisfied {
+
+    font-weight: normal;
+    color: #333333
+}
+
+section.pword-checkboxes > ul.tips > li.satisfied {
+
+    color: #18BC9C;
+    font-weight: bold;
 }
 
 .progress-custom{

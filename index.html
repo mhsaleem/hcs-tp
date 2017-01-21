@@ -5,16 +5,19 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>PasswordDyno</title>
 
-    <!-- MaterializeCSS -->
+    <!-- Lato -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
     <link href="libs/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <!-- CustomCSS -->
     <link href="css/custom.css" type="text/css" rel="stylesheet">
-
-
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,6 +50,10 @@
 
         <div class="container">
 
+            <a href="index.html">
+                <img src="img/logo.png" class="img-responsive center-block logo">
+            </a>
+
             <div class="row">
 
                 <div class="col-md-8 col-md-push-2">
@@ -59,15 +66,64 @@
                         <div id="complexity-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                     </div>
 
-                </div>       <!--/.col-->
+                </div>
 
-            </div>      <!--/.row-->
-
-        </div>       <!--/.container-->
-
+            </div>
+        </div>
     </section>  <!--/.password-container-->
 
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-push-2">
+
+                <section class="pword-checkboxes">
+
+                    <img src="img/tips.png" class="tips-dyno">
+
+                    <ul class="list-unstyled tips">
+
+                        <li class="tip satisfied">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            Your password is 8 characters or longer.
+                        </li>
+
+                        <li class="tip unsatisfied">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            Your password has small and capital letters.
+                        </li>
+
+                        <li class="tip unsatisfied">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            Your password contains digits.
+                        </li>
+
+                        <li class="tip unsatisfied">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            Your password has ambiguous characters.
+                        </li>
+
+                        <li class="tip unsatisfied">
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                            Your password does not contain continuous characters.
+                        </li>
+
+                    </ul>
+
+                </section> <!--/.pword-checkboxes-->
+
+            </div>        <!-- /.col-md-6 -->
+
+        </div>     <!-- /.row -->
+
+    </div>      <!-- /.container -->
+
+
 </main>
+
 
 </body>
 
