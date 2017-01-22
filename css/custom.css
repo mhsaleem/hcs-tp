@@ -8,7 +8,7 @@ body {
 section.password-container {
 
     background-color: #18BC9C;
-    padding: 40px 0 80px;
+    padding: 40px 0 60px;
 }
 
 .password-entry {
@@ -22,6 +22,12 @@ section.password-container {
 
     width: 630px;
     margin-bottom: 70px;
+}
+
+button#clipboard {
+
+    font-family: 'Lato', sans-serif;
+    background-color: #e67e22;
 }
 
 /* Checkboxes */
