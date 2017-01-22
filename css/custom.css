@@ -24,8 +24,10 @@ section.password-container {
     margin-bottom: 70px;
 }
 
-h1#complexity {
+p#complexity {
 
+    margin-top: 5px;
+    font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
 
@@ -80,5 +82,5 @@ section.pword-checkboxes > ul.tips > li.satisfied {
 }
 
 .progress-custom {
-    height: 20px;
+    height: 35px;
 }

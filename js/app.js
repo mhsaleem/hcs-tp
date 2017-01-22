@@ -44,7 +44,7 @@ $(document).ready(function () {
             progressBar.toggleClass('progress-bar-success', valid);
 
             if (password.length == 0) {
-                complexityVal.text('No Password Entered');
+                complexityVal.text('');
             }
             else if (complexity >= 30 && complexity < 45) {
 
