@@ -52,11 +52,17 @@ $(document).ready(function () {
                 progressBar.addClass('progress-bar').addClass('progress-bar-warning');
                 complexityVal.text('Medium');
             }
-            else if (complexity >= 45) {
+            else if (complexity >= 45 && complexity < 65) {
 
                 progressBar.removeClass();
                 progressBar.addClass('progress-bar').addClass('progress-bar-success');
                 complexityVal.text('Strong');
+            }
+            else if (complexity >= 65) {
+
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-success');
+                complexityVal.text('Very Strong');
             }
             else {
 
