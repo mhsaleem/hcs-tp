@@ -4,6 +4,9 @@ $(document).ready(function () {
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction
     $('#password').showPassword(true);
 
+    // Give focus on the password field immediately. Users can type without clicking
+    $('#password').focus();
+
     // Copy to clipboard btn
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction
     var clipboard = new Clipboard('#clipboard');
