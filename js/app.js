@@ -1,6 +1,35 @@
-$(document).ready(function(){
+
+$(document).ready(function () {
+
+    // Show/Hide Password Init.
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
+    $('#password').showPassword(true);
+
+    // Copy to clipboard btn
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
+    var clipboard = new Clipboard('#clipboard');
+
+    // Show notifications after password has been coppied
+    clipboard.on('success', function(e) {
+
+        toastr.success('Your password has been copied.', 'Success!');
+        toastr.options.closeButton = true;
+        toastr.options.preventDuplicates = true;
+        toastr.options.timeOut = 2000;            // How long the toast will display without user interaction
+        toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+
+        toastr.error('Your password could not be copied.', 'Error!');
+        toastr.options.closeButton = true;
+        toastr.options.preventDuplicates = true;
+        toastr.options.timeOut = 2000;            // How long the toast will display without user interaction
+        toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
+    });
     $("#password").on('change keydown paste input',function() {
-        $("#password").complexify({}, function(valid, complexity) {
+        $("#password").complexify({}, function (valid, complexity) {
             var progressBar = $('#complexity-bar');
             var password = $('#password').val();
             var complexityVal = $('#complexity');
@@ -85,6 +114,11 @@ function configureTips(password){
     }
 
 }
+
+$('#password').on('passwordVisibilityChange', function () {
+    $('#password').focus();
+});
+
 // jQuery(document).ready(function(){
 //     jQuery("#password").keyup(function() {
 //         passwordStrength(jQuery(this).val());
