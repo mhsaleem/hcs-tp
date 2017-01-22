@@ -1,8 +1,35 @@
+jQuery(document).ready(function () {
 
+    // Show/Hide Password Init.
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
+    $('#password').showPassword(true);
 
-jQuery(document).ready(function(){
-    jQuery("#password").keyup(function() {
-        $("#password").complexify({}, function(valid, complexity) {
+    // Copy to clipboard btn
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
+    var clipboard = new Clipboard('#clipboard');
+
+    // Show notifications after password has been coppied
+    clipboard.on('success', function(e) {
+
+        toastr.success('Your password has been copied.', 'Success!');
+        toastr.options.closeButton = true;
+        toastr.options.preventDuplicates = true;
+        toastr.options.timeOut = 2000;            // How long the toast will display without user interaction
+        toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+
+        toastr.error('Your password could not be copied.', 'Error!');
+        toastr.options.closeButton = true;
+        toastr.options.preventDuplicates = true;
+        toastr.options.timeOut = 2000;            // How long the toast will display without user interaction
+        toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
+    });
+
+    jQuery("#password").keyup(function () {
+        $("#password").complexify({}, function (valid, complexity) {
             var progressBar = $('#complexity-bar');
 
             progressBar.toggleClass('progress-bar-success', valid);
@@ -14,6 +41,11 @@ jQuery(document).ready(function(){
             // $('#complexify #complexity').text(Math.round(complexity) + '%');
         });
     });
+});
+
+
+$('#password').on('passwordVisibilityChange', function () {
+    $('#password').focus();
 });
 
 // jQuery(document).ready(function(){

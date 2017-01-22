@@ -5,11 +5,10 @@ body {
     padding-bottom: 40px;
 }
 
-
 section.password-container {
 
     background-color: #18BC9C;
-    padding: 40px 0 120px;
+    padding: 40px 0 60px;
 }
 
 .password-entry {
@@ -25,6 +24,11 @@ section.password-container {
     margin-bottom: 70px;
 }
 
+button#clipboard {
+
+    font-family: 'Lato', sans-serif;
+    background-color: #e67e22;
+}
 
 /* Checkboxes */
 
@@ -35,7 +39,7 @@ section.pword-checkboxes {
     margin-top: -30px;
     background-color: #fff;
 
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 section.pword-checkboxes > img.tips-dyno {
@@ -69,6 +73,6 @@ section.pword-checkboxes > ul.tips > li.satisfied {
     font-weight: bold;
 }
 
-.progress-custom{
+.progress-custom {
     height: 40px;
 }
