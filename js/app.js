@@ -1,6 +1,7 @@
 jQuery(document).ready(function () {
 
     // Show/Hide Password Init.
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
     $('#password').showPassword(true);
 
     // jQuery("#password").keyup(function () {
