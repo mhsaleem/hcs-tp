@@ -7,7 +7,8 @@ body {
 
 section.password-container {
 
-    background-color: #18BC9C;
+    /*background-color: #18BC9C;*/
+    background-color: #2980b9;
     padding: 40px 0 60px;
 }
 
