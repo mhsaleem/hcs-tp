@@ -1,3 +1,5 @@
+
+
 jQuery(document).ready(function(){
     jQuery("#password").keyup(function() {
         $("#password").complexify({}, function(valid, complexity) {
