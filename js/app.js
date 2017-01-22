@@ -1,19 +1,26 @@
+jQuery(document).ready(function () {
+
+    // Show/Hide Password Init.
+    $('#password').showPassword(true);
+
+    // jQuery("#password").keyup(function () {
+    //     $("#password").complexify({}, function (valid, complexity) {
+    //         var progressBar = $('#complexity-bar');
+    //
+    //         progressBar.toggleClass('progress-bar-success', valid);
+    //         progressBar.toggleClass('progress-bar-danger', !valid);
+    //         progressBar.css({
+    //             'width': complexity + '%'
+    //         });
+    //
+    //         // $('#complexify #complexity').text(Math.round(complexity) + '%');
+    //     });
+    // });
+});
 
 
-jQuery(document).ready(function(){
-    jQuery("#password").keyup(function() {
-        $("#password").complexify({}, function(valid, complexity) {
-            var progressBar = $('#complexity-bar');
-
-            progressBar.toggleClass('progress-bar-success', valid);
-            progressBar.toggleClass('progress-bar-danger', !valid);
-            progressBar.css({
-                'width': complexity + '%'
-            });
-
-            // $('#complexify #complexity').text(Math.round(complexity) + '%');
-        });
-    });
+$('#password').on('passwordVisibilityChange', function () {
+    $('#password').focus();
 });
 
 // jQuery(document).ready(function(){
