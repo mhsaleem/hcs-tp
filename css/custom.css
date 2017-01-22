@@ -24,10 +24,16 @@ section.password-container {
     margin-bottom: 70px;
 }
 
+h1#complexity {
+
+    font-family: 'Lato', sans-serif;
+}
+
 button#clipboard {
 
     font-family: 'Lato', sans-serif;
     background-color: #e67e22;
+    margin-top: 30px;
 }
 
 /* Checkboxes */
@@ -74,5 +80,5 @@ section.pword-checkboxes > ul.tips > li.satisfied {
 }
 
 .progress-custom {
-    height: 40px;
+    height: 20px;
 }

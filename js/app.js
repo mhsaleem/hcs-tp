@@ -1,16 +1,18 @@
-
 $(document).ready(function () {
 
     // Show/Hide Password Init.
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction
     $('#password').showPassword(true);
 
+    // Give focus on the password field immediately. Users can type without clicking
+    $('#password').focus();
+
     // Copy to clipboard btn
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction
     var clipboard = new Clipboard('#clipboard');
 
     // Show notifications after password has been coppied
-    clipboard.on('success', function(e) {
+    clipboard.on('success', function (e) {
 
         toastr.success('Your password has been copied.', 'Success!');
         toastr.options.closeButton = true;
@@ -20,7 +22,7 @@ $(document).ready(function () {
         e.clearSelection();
     });
 
-    clipboard.on('error', function(e) {
+    clipboard.on('error', function (e) {
 
         toastr.error('Your password could not be copied.', 'Error!');
         toastr.options.closeButton = true;
@@ -28,74 +30,103 @@ $(document).ready(function () {
         toastr.options.timeOut = 2000;            // How long the toast will display without user interaction
         toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
     });
-    $("#password").on('change keydown paste input',function() {
+
+    $("#password").on('change keydown paste input', function () {
+
         $("#password").complexify({}, function (valid, complexity) {
+
             var progressBar = $('#complexity-bar');
-            var password = $('#password').val();
+            var password = $('#password').val().trim();
             var complexityVal = $('#complexity');
+
             configureTips(password);
 
             progressBar.toggleClass('progress-bar-success', valid);
-            if(password.length == 0){
+
+            if (password.length == 0) {
                 complexityVal.text('No Password Entered');
             }
-            else if(complexity >= 30  && complexity < 45){
-                // progressBar.toggleClass('progress-bar-warning');
+            else if (complexity >= 30 && complexity < 45) {
+
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-warning');
                 complexityVal.text('Medium');
             }
-            else if(complexity >= 45) {
-                // progressBar.toggleClass('progress-bar-success');
+            else if (complexity >= 45) {
+
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-success');
                 complexityVal.text('Strong');
             }
-            else{
-                // progressBar.toggleClass('progress-bar-danger');
+            else {
+
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-danger');
                 complexityVal.text('Weak');
             }
-            progressBar.toggleClass('progress-bar-danger', !valid);
+
             progressBar.css({
                 'width': complexity + '%'
             });
 
-            // $('#complexity').text(complexity + '%');
         });
     });
 });
 
-function configureTips(password){
+function configureTips(password) {
+
     var tip1 = $('#pwdLength');
     var tip2 = $('#pwdCasing');
     var tip3 = $('#pwdContinuous');
     var tip4 = $('#pwdDigits');
     var tip5 = $('#pwdSpecial');
 
-    if(password.length >= 8){
+    // We can't do anything - everything is unsatisfied
+    if (password.length == 0) {
+
+        tip1.removeClass('satisfied');
+        tip2.removeClass('satisfied');
+        tip3.removeClass('satisfied');
+        tip4.removeClass('satisfied');
+        tip5.removeClass('satisfied');
+
+        if (!tip1.hasClass('unsatisfied')) tip1.addClass('unsatisfied');
+        if (!tip2.hasClass('unsatisfied')) tip2.addClass('unsatisfied');
+        if (!tip3.hasClass('unsatisfied')) tip3.addClass('unsatisfied');
+        if (!tip4.hasClass('unsatisfied')) tip4.addClass('unsatisfied');
+        if (!tip5.hasClass('unsatisfied')) tip5.addClass('unsatisfied');
+
+        return;
+    }
+
+    if (password.length >= 8) {
         tip1.removeClass('unsatisfied');
         tip1.addClass('satisfied');
     }
-    else{
+    else {
         tip1.removeClass('satisfied');
         tip1.addClass('unsatisfied');
     }
 
-    if(/[a-z].*[A-Z]|[A-Z].*[a-z]/.test(password)){
+    if (/[a-z].*[A-Z]|[A-Z].*[a-z]/.test(password)) {
         tip2.removeClass('unsatisfied');
         tip2.addClass('satisfied');
     }
-    else{
+    else {
         tip2.removeClass('satisfied');
         tip2.addClass('unsatisfied');
     }
 
-    if(!/([0-9a-zA-Z\_\\])\1{2,}/.test(password)){
+    if (!/([0-9a-zA-Z\_\\])\1{2,}/.test(password)) {
         tip3.removeClass('unsatisfied');
         tip3.addClass('satisfied');
     }
-    else{
+    else {
         tip3.removeClass('satisfied');
         tip3.addClass('unsatisfied');
     }
 
-    if(/\d/.test(password)){
+    if (/\d/.test(password)) {
         tip4.removeClass('unsatisfied');
         tip4.addClass('satisfied');
     }
@@ -104,7 +135,7 @@ function configureTips(password){
         tip4.addClass('unsatisfied');
     }
 
-    if(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?_]/.test(password)){
+    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?_]/.test(password)) {
         tip5.removeClass('unsatisfied');
         tip5.addClass('satisfied');
     }
@@ -115,6 +146,8 @@ function configureTips(password){
 
 }
 
+// When the visibility of the password changes by default the field loses focus
+// That's annoying - when the button is clicked we need to give focus back to the inout.
 $('#password').on('passwordVisibilityChange', function () {
     $('#password').focus();
 });
