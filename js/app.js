@@ -104,6 +104,11 @@ function configureTips(password) {
         tip5.removeClass('satisfied');
         tip6.removeClass('satisfied');
 
+        tip3.find("span").removeClass('glyphicon-ok-sign');
+        tip6.find("span").removeClass('glyphicon-ok-sign');
+        tip3.find("span").addClass('glyphicon-remove-sign');
+        tip6.find("span").addClass('glyphicon-remove-sign');
+
         if (!tip1.hasClass('unsatisfied')) tip1.addClass('unsatisfied');
         if (!tip2.hasClass('unsatisfied')) tip2.addClass('unsatisfied');
         if (!tip3.hasClass('unsatisfied')) tip3.addClass('unsatisfied');
@@ -184,6 +189,13 @@ function configureTips(password) {
         tip6.find("span").addClass('glyphicon-remove-sign');
         tip6.removeClass('satisfied');
         tip6.addClass('unsatisfied');
+
+        toastr.warning('Your password contains a very common word.', 'Attention!');
+        toastr.options.closeButton = false;
+        toastr.options.preventDuplicates = true;
+        toastr.options.timeOut = 4000;
+        toastr.options.extendedTimeOut = 60;
+        toastr.options.positionClass = "toast-top-full-width";
     }
     else{
         tip6.find("span").removeClass('glyphicon-remove-sign');
