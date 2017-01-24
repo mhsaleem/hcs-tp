@@ -92,6 +92,7 @@ function configureTips(password) {
     var tip3 = $('#pwdContinuous');
     var tip4 = $('#pwdDigits');
     var tip5 = $('#pwdSpecial');
+    var tip6 = $('#pwdCommon');
 
     // We can't do anything - everything is unsatisfied
     if (password.length == 0) {
@@ -101,62 +102,103 @@ function configureTips(password) {
         tip3.removeClass('satisfied');
         tip4.removeClass('satisfied');
         tip5.removeClass('satisfied');
+        tip6.removeClass('satisfied');
 
         if (!tip1.hasClass('unsatisfied')) tip1.addClass('unsatisfied');
         if (!tip2.hasClass('unsatisfied')) tip2.addClass('unsatisfied');
         if (!tip3.hasClass('unsatisfied')) tip3.addClass('unsatisfied');
         if (!tip4.hasClass('unsatisfied')) tip4.addClass('unsatisfied');
         if (!tip5.hasClass('unsatisfied')) tip5.addClass('unsatisfied');
+        if (!tip6.hasClass('unsatisfied')) tip6.addClass('unsatisfied');
 
         return;
     }
 
     if (password.length >= 8) {
+        tip1.find("span").removeClass('glyphicon-remove-sign');
+        tip1.find("span").addClass('glyphicon-ok-sign');
         tip1.removeClass('unsatisfied');
         tip1.addClass('satisfied');
     }
     else {
+        tip1.find("span").removeClass('glyphicon-ok-sign');
+        tip1.find("span").addClass('glyphicon-remove-sign');
         tip1.removeClass('satisfied');
         tip1.addClass('unsatisfied');
     }
 
     if (/[a-z].*[A-Z]|[A-Z].*[a-z]/.test(password)) {
+        tip2.find("span").removeClass('glyphicon-remove-sign');
+        tip2.find("span").addClass('glyphicon-ok-sign');
         tip2.removeClass('unsatisfied');
         tip2.addClass('satisfied');
     }
     else {
+        tip2.find("span").removeClass('glyphicon-ok-sign');
+        tip2.find("span").addClass('glyphicon-remove-sign');
         tip2.removeClass('satisfied');
         tip2.addClass('unsatisfied');
     }
 
     if (!/([0-9a-zA-Z\_\\])\1{2,}/.test(password)) {
+        tip3.find("span").removeClass('glyphicon-remove-sign');
+        tip3.find("span").addClass('glyphicon-ok-sign');
         tip3.removeClass('unsatisfied');
         tip3.addClass('satisfied');
     }
     else {
+        tip3.find("span").removeClass('glyphicon-ok-sign');
+        tip3.find("span").addClass('glyphicon-remove-sign');
         tip3.removeClass('satisfied');
         tip3.addClass('unsatisfied');
     }
 
     if (/\d/.test(password)) {
+        tip4.find("span").removeClass('glyphicon-remove-sign');
+        tip4.find("span").addClass('glyphicon-ok-sign');
         tip4.removeClass('unsatisfied');
         tip4.addClass('satisfied');
     }
     else {
+        tip4.find("span").removeClass('glyphicon-ok-sign');
+        tip4.find("span").addClass('glyphicon-remove-sign');
         tip4.removeClass('satisfied');
         tip4.addClass('unsatisfied');
     }
 
     if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?_]/.test(password)) {
+        tip5.find("span").removeClass('glyphicon-remove-sign');
+        tip5.find("span").addClass('glyphicon-ok-sign');
         tip5.removeClass('unsatisfied');
         tip5.addClass('satisfied');
     }
     else {
+        tip5.find("span").removeClass('glyphicon-ok-sign');
+        tip5.find("span").addClass('glyphicon-remove-sign');
         tip5.removeClass('satisfied');
         tip5.addClass('unsatisfied');
     }
 
+    if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
+        tip6.find("span").removeClass('glyphicon-ok-sign');
+        tip6.find("span").addClass('glyphicon-remove-sign');
+        tip6.removeClass('satisfied');
+        tip6.addClass('unsatisfied');
+    }
+    else{
+        tip6.find("span").removeClass('glyphicon-remove-sign');
+        tip6.find("span").addClass('glyphicon-ok-sign');
+        tip6.removeClass('unsatisfied');
+        tip6.addClass('satisfied');
+    }
+
 }
+
+// function checkCommonWord(password){
+//     if ($.inArray(password, COMPLEXIFY_BANLIST)){
+//         $('.common-word-warning').css( "display", "block");
+//     }
+// }
 
 // When the visibility of the password changes by default the field loses focus
 // That's annoying - when the button is clicked we need to give focus back to the inout.

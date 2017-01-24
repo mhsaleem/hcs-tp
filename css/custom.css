@@ -73,12 +73,18 @@ section.pword-checkboxes > ul.tips > li {
 section.pword-checkboxes > ul.tips > li.unsatisfied {
 
     font-weight: normal;
-    color: #333333
+    color: #ff0000
 }
 
 section.pword-checkboxes > ul.tips > li.satisfied {
 
     color: #18BC9C;
+    font-weight: bold;
+}
+
+section.pword-checkboxes > ul.tips > li.unknown {
+
+    color: #d3d3d3;
     font-weight: bold;
 }
 
