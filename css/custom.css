@@ -78,7 +78,8 @@ section.pword-checkboxes > ul.tips > li.unsatisfied {
 
 section.pword-checkboxes > ul.tips > li.satisfied {
 
-    color: #18BC9C;
+    color: #2980b9;
+    /*color: #18BC9C;*/
     font-weight: bold;
 }
 

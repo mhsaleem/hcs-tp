@@ -1,11 +1,10 @@
 $(document).ready(function () {
 
     // Show/Hide Password Init.
-    //noinspection JSUnresolvedFunction,JSUnresolvedFunction
-    $('#password').showPassword(true);
-
     // Give focus on the password field immediately. Users can type without clicking
-    $('#password').focus();
+    //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSJQueryEfficiency
+    $('#password').showPassword(true).focus();
+
 
     // Copy to clipboard btn
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction
@@ -22,7 +21,7 @@ $(document).ready(function () {
         e.clearSelection();
     });
 
-    clipboard.on('error', function (e) {
+    clipboard.on('error', function () {
 
         toastr.error('Your password could not be copied.', 'Error!');
         toastr.options.closeButton = true;
@@ -31,6 +30,7 @@ $(document).ready(function () {
         toastr.options.extendedTimeOut = 60;    // How long the toast will display after a user hovers over it
     });
 
+    //noinspection JSJQueryEfficiency
     $("#password").on('change keydown paste input', function () {
 
         $("#password").complexify({}, function (valid, complexity) {
@@ -38,6 +38,9 @@ $(document).ready(function () {
             var progressBar = $('#complexity-bar');
             var password = $('#password').val().trim();
             var complexityVal = $('#complexity');
+
+            console.log(valid);
+            console.log(complexity);
 
             configureTips(password);
 
@@ -161,58 +164,6 @@ function configureTips(password) {
 // When the visibility of the password changes by default the field loses focus
 // That's annoying - when the button is clicked we need to give focus back to the inout.
 $('#password').on('passwordVisibilityChange', function () {
-    $('#password').focus();
+    $(this).focus();
 });
-
-// jQuery(document).ready(function(){
-//     jQuery("#password").keyup(function() {
-//         passwordStrength(jQuery(this).val());
-//     });
-// });
-
-
-//
-// /* Password strength indicator */
-// function passwordStrength(password) {
-//
-//     var desc = [{'width':'0px'}, {'width':'20%'}, {'width':'40%'}, {'width':'60%'}, {'width':'80%'}, {'width':'100%'}];
-//
-//     var descClass = ['', 'progress-bar-danger', 'progress-bar-danger', 'progress-bar-warning', 'progress-bar-success', 'progress-bar-success'];
-//
-//     var score = 0;
-//
-//     //if password bigger than 6 give 1 point
-//     if (password.length > 6) score++;
-//
-//     //if password has both lower and uppercase characters give 1 point
-//     if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++;
-//
-//     //if password has at least one number give 1 point
-//     if (password.match(/d+/)) score++;
-//
-//     //if password has at least one special caracther give 1 point
-//     if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) )	score++;
-//
-//     //if password bigger than 12 give another 1 point
-//     if (password.length > 10) score++;
-//
-//     // display indicator
-//     $("#jak_pstrength").removeClass(descClass[score-1]).addClass(descClass[score]).css(desc[score]);
-// }
-
-// (function($) {
-//
-//     $("#password").complexify({}, function(valid, complexity) {
-//         var progressBar = $('#complexity-bar');
-//
-//         progressBar.toggleClass('progress-bar-success', valid);
-//         progressBar.toggleClass('progress-bar-danger', !valid);
-//         progressBar.css({
-//             'width': complexity + '%'
-//         });
-//
-//         // $('#complexify #complexity').text(Math.round(complexity) + '%');
-//     });
-//
-// })(jQuery);
 
