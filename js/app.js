@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var checkCommon = false;
 
     // Show/Hide Password Init.
     // Give focus on the password field immediately. Users can type without clicking
@@ -49,6 +50,7 @@ $(document).ready(function () {
 
             if (password.length == 0 || complexityVal == 0) {
                 complexityVal.text('');
+                checkCommon = false;
             }
             else if (complexity >= 30 && complexity < 45) {
 
@@ -85,11 +87,19 @@ $(document).ready(function () {
                 'width': complexity + '%'
             });
 
+            // if(checkCommon){
+                // progressBar.removeClass();
+                // progressBar.addClass('progress-bar').addClass('progress-bar-danger');
+                // progressBar.css({'width' : '30%'});
+            // }
+
+
             if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
                 progressBar.removeClass();
                 progressBar.addClass('progress-bar').addClass('progress-bar-info');
                 progressBar.css({'width' : 100+'%'});
                 complexityVal.text('Common Password');
+                checkCommon = true;
             }
 
         });
