@@ -38,9 +38,7 @@ $(document).ready(function () {
             var progressBar = $('#complexity-bar');
             var password = $('#password').val().trim();
             var complexityVal = $('#complexity');
-
             configureTips(password);
-
             progressBar.toggleClass('progress-bar-success', valid);
 
 
