@@ -219,6 +219,13 @@ $('#password').on('passwordVisibilityChange', function () {
 });
 
 
+/*
+* Makes the password read-friendly. Parses all the password characters and replaces the ambiguous with words.
+* Also adds extra spaces between characters.
+* i.e: "f!j1" -> f exclamation point j 1
+*
+* @param String - The password that has to be converted to speech friendly.
+* @return String - The password converted*/
 
 function getPasswordText(pword) {
 
@@ -268,7 +275,9 @@ function getPasswordText(pword) {
 }
 
 
-// say a message
+
+// Use the built in SpeechSynthesis to make the computer speak.
+
 function speak(text, callback) {
 
     var u = new SpeechSynthesisUtterance();
@@ -291,6 +300,8 @@ function speak(text, callback) {
     speechSynthesis.speak(u);
 }
 
+
+// Read the password character by character
 $('#speakPassword').click(function(){
 
     var password = $("#password").val().trim();
@@ -308,6 +319,7 @@ $('#speakPassword').click(function(){
 });
 
 
+// Read the password strength
 $('#speakPasswordStrength').click(function(){
 
     var password = $("#password").val().trim();

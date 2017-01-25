@@ -34,9 +34,10 @@ p#complexity {
 
 div.pwordActions {
 
-    width: 440px;
+    width: 630px;
     display: block;
     margin: 30px auto 0;
+    font-family: 'Lato', sans-serif;
 }
 
 button#clipboard {
