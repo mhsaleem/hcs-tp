@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    var checkCommon = false;
-
+    var common = false;
     // Show/Hide Password Init.
     // Give focus on the password field immediately. Users can type without clicking
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSJQueryEfficiency
@@ -45,9 +44,9 @@ $(document).ready(function () {
             progressBar.toggleClass('progress-bar-success', valid);
 
 
-            if (password.length == 0 || complexityVal == 0) {
+            if (password.length == 0) {
                 complexityVal.text('');
-                checkCommon = false;
+                common = false;
             }
             else if (complexity >= 30 && complexity < 45) {
 
@@ -74,29 +73,38 @@ $(document).ready(function () {
                 complexityVal.text('Powerful');
             }
             else {
-
                 progressBar.removeClass();
                 progressBar.addClass('progress-bar').addClass('progress-bar-danger');
                 complexityVal.text('Weak');
             }
 
-            progressBar.css({
-                'width': complexity + '%'
-            });
 
-            // if(checkCommon){
-                // progressBar.removeClass();
-                // progressBar.addClass('progress-bar').addClass('progress-bar-danger');
-                // progressBar.css({'width' : '30%'});
-            // }
+            if(common){
+                if(complexity >= 20){
+                    complexity -= 20;
+                    progressBar.css({
+                        'width': complexity  + '%'
+                    });
+                }
+                else{
+                    progressBar.css({
+                        'width': '0%'
+                    });
+                }
+            }
+            else{
+                progressBar.css({
+                    'width': complexity  + '%'
+                });
+            }
 
 
             if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
                 progressBar.removeClass();
-                progressBar.addClass('progress-bar').addClass('progress-bar-info');
+                progressBar.addClass('progress-bar').addClass('progress-bar-danger');
                 progressBar.css({'width' : 100+'%'});
                 complexityVal.text('Common Password');
-                checkCommon = true;
+                common = true;
             }
 
         });
