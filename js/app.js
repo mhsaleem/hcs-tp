@@ -254,7 +254,7 @@ function getPasswordText(pword) {
         '|': 'line',
         '{': 'open curly brace',
         '}': 'close curly brace'
-    }
+    };
 
     pwordChars = pword.split("");
     pwordSpeak = "";
@@ -266,7 +266,7 @@ function getPasswordText(pword) {
         if (pwordChar in characters)
             pwordSpeak += characters[pwordChar];
         else
-            pwordSpeak += pwordChar
+            pwordSpeak += pwordChar;
 
         pwordSpeak += "   ";
     }
