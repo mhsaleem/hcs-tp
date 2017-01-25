@@ -40,9 +40,6 @@ $(document).ready(function () {
             var password = $('#password').val().trim();
             var complexityVal = $('#complexity');
 
-            console.log(valid);
-            console.log(complexity);
-
             configureTips(password);
 
             progressBar.toggleClass('progress-bar-success', valid);
@@ -253,3 +250,118 @@ $('#password').on('passwordVisibilityChange', function () {
     $(this).focus();
 });
 
+
+/*
+* Makes the password read-friendly. Parses all the password characters and replaces the ambiguous with words.
+* Also adds extra spaces between characters.
+* i.e: "f!j1" -> f exclamation point j 1
+*
+* @param String - The password that has to be converted to speech friendly.
+* @return String - The password converted*/
+
+function getPasswordText(pword) {
+
+    var characters = {
+
+        '!': 'exclamation point',
+        '@': 'at sign',
+        '$': 'dollar sign',
+        '%': 'percentage',
+        '^': 'up',
+        '&': 'and',
+        '*': 'star',
+        '(': 'opening parenthesis',
+        ')': 'closing parenthesis',
+        '_': 'underscore',
+        '+': 'plus',
+        '-': 'minus',
+        '§': 'paragraph',
+        '/': 'line',
+        '\\': 'escape',
+        '?': 'question mark',
+        ',': 'comma',
+        '.': 'full stop',
+        '<': 'open tag',
+        '>': 'close tag',
+        '|': 'line',
+        '{': 'open curly brace',
+        '}': 'close curly brace'
+    };
+
+    pwordChars = pword.split("");
+    pwordSpeak = "";
+
+    for (var index = 0; index < pwordChars.length; index++) {
+
+        var pwordChar = pwordChars[index];
+
+        if (pwordChar in characters)
+            pwordSpeak += characters[pwordChar];
+        else
+            pwordSpeak += pwordChar;
+
+        pwordSpeak += "   ";
+    }
+
+    return pwordSpeak;
+}
+
+
+
+// Use the built in SpeechSynthesis to make the computer speak.
+
+function speak(text, callback) {
+
+    var u = new SpeechSynthesisUtterance();
+    u.text = text;
+    u.lang = 'en-US';
+    u.rate = 0.6;
+
+    u.onend = function () {
+        if (callback) {
+            callback();
+        }
+    };
+
+    u.onerror = function (e) {
+        if (callback) {
+            callback(e);
+        }
+    };
+
+    speechSynthesis.speak(u);
+}
+
+
+// Read the password character by character
+$('#speakPassword').click(function(){
+
+    var password = $("#password").val().trim();
+
+    if (password.length > 0) {
+
+        //console.log(password);
+        var pword = getPasswordText(password);
+        //console.log(pword);
+        speak(pword);
+    }else {
+
+        speak("You haven't typed a password");
+    }
+});
+
+
+// Read the password strength
+$('#speakPasswordStrength').click(function(){
+
+    var password = $("#password").val().trim();
+
+    if (password.length > 0) {
+
+        var strength = $("#complexity").html();
+        speak("Your password is " + strength);
+    }else {
+
+        speak("You haven't typed a password");
+    }
+});
