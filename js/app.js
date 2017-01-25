@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var checkCommon = false;
 
     // Show/Hide Password Init.
     // Give focus on the password field immediately. Users can type without clicking
@@ -46,8 +47,10 @@ $(document).ready(function () {
 
             progressBar.toggleClass('progress-bar-success', valid);
 
-            if (password.length == 0) {
+
+            if (password.length == 0 || complexityVal == 0) {
                 complexityVal.text('');
+                checkCommon = false;
             }
             else if (complexity >= 30 && complexity < 45) {
 
@@ -83,6 +86,21 @@ $(document).ready(function () {
             progressBar.css({
                 'width': complexity + '%'
             });
+
+            // if(checkCommon){
+                // progressBar.removeClass();
+                // progressBar.addClass('progress-bar').addClass('progress-bar-danger');
+                // progressBar.css({'width' : '30%'});
+            // }
+
+
+            if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-info');
+                progressBar.css({'width' : 100+'%'});
+                complexityVal.text('Common Password');
+                checkCommon = true;
+            }
 
         });
     });
@@ -171,17 +189,22 @@ function configureTips(password) {
     }
 
     if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
+        var progressBar = $('#complexity-bar');
         tip6.find("span").removeClass('glyphicon-ok-sign');
         tip6.find("span").addClass('glyphicon-remove-sign');
         tip6.removeClass('satisfied');
         tip6.addClass('unsatisfied');
 
-        toastr.warning('Your password contains a very common word.', 'Attention!');
-        toastr.options.closeButton = false;
-        toastr.options.preventDuplicates = true;
-        toastr.options.timeOut = 4000;
-        toastr.options.extendedTimeOut = 60;
-        toastr.options.positionClass = "toast-top-full-width";
+
+        // progressBar.removeClass();
+        // progressBar.addClass('progress-bar').addClass('progress-bar-info');
+        // progressBar.css({'width' : 100+'%'});
+        // toastr.warning('Your password contains a very common word.', 'Attention!');
+        // toastr.options.closeButton = false;
+        // toastr.options.preventDuplicates = true;
+        // toastr.options.timeOut = 4000;
+        // toastr.options.extendedTimeOut = 60;
+        // toastr.options.positionClass = "toast-top-full-width";
     }
     else{
         tip6.find("span").removeClass('glyphicon-remove-sign');
