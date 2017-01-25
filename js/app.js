@@ -219,12 +219,62 @@ $('#password').on('passwordVisibilityChange', function () {
 });
 
 
+
+function getPasswordText(pword) {
+
+    var characters = {
+
+        '!': 'exclamation point',
+        '@': 'at sign',
+        '$': 'dollar sign',
+        '%': 'percentage',
+        '^': 'up',
+        '&': 'and',
+        '*': 'star',
+        '(': 'opening parenthesis',
+        ')': 'closing parenthesis',
+        '_': 'underscore',
+        '+': 'plus',
+        '-': 'minus',
+        '§': 'paragraph',
+        '/': 'line',
+        '\\': 'escape',
+        '?': 'question mark',
+        ',': 'comma',
+        '.': 'full stop',
+        '<': 'open tag',
+        '>': 'close tag',
+        '|': 'line',
+        '{': 'open curly brace',
+        '}': 'close curly brace'
+    }
+
+    pwordChars = pword.split("");
+    pwordSpeak = "";
+
+    for (var index = 0; index < pwordChars.length; index++) {
+
+        var pwordChar = pwordChars[index];
+
+        if (pwordChar in characters)
+            pwordSpeak += characters[pwordChar];
+        else
+            pwordSpeak += pwordChar
+
+        pwordSpeak += "   ";
+    }
+
+    return pwordSpeak;
+}
+
+
 // say a message
 function speak(text, callback) {
 
     var u = new SpeechSynthesisUtterance();
     u.text = text;
     u.lang = 'en-US';
+    u.rate = 0.6;
 
     u.onend = function () {
         if (callback) {
@@ -241,10 +291,26 @@ function speak(text, callback) {
     speechSynthesis.speak(u);
 }
 
+$('#speakPassword').click(function(){
+
+    var password = $("#password").val().trim();
+
+    if (password.length > 0) {
+
+        //console.log(password);
+        var pword = getPasswordText(password);
+        //console.log(pword);
+        speak(pword);
+    }else {
+
+        speak("You haven't typed a password");
+    }
+});
+
 
 $('#speakPasswordStrength').click(function(){
 
-    var password = $("#password").val();
+    var password = $("#password").val().trim();
 
     if (password.length > 0) {
 
@@ -254,6 +320,4 @@ $('#speakPasswordStrength').click(function(){
 
         speak("You haven't typed a password");
     }
-
-
 });
