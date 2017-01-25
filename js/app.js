@@ -46,7 +46,8 @@ $(document).ready(function () {
 
             progressBar.toggleClass('progress-bar-success', valid);
 
-            if (password.length == 0) {
+
+            if (password.length == 0 || complexityVal == 0) {
                 complexityVal.text('');
             }
             else if (complexity >= 30 && complexity < 45) {
@@ -83,6 +84,13 @@ $(document).ready(function () {
             progressBar.css({
                 'width': complexity + '%'
             });
+
+            if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
+                progressBar.removeClass();
+                progressBar.addClass('progress-bar').addClass('progress-bar-info');
+                progressBar.css({'width' : 100+'%'});
+                complexityVal.text('Common Password');
+            }
 
         });
     });
@@ -188,17 +196,22 @@ function configureTips(password) {
     }
 
     if ($.inArray(password, COMPLEXIFY_BANLIST) > -1){
+        var progressBar = $('#complexity-bar');
         tip6.find("span").removeClass('glyphicon-ok-sign');
         tip6.find("span").addClass('glyphicon-remove-sign');
         tip6.removeClass('satisfied');
         tip6.addClass('unsatisfied');
 
-        toastr.warning('Your password contains a very common word.', 'Attention!');
-        toastr.options.closeButton = false;
-        toastr.options.preventDuplicates = true;
-        toastr.options.timeOut = 4000;
-        toastr.options.extendedTimeOut = 60;
-        toastr.options.positionClass = "toast-top-full-width";
+
+        // progressBar.removeClass();
+        // progressBar.addClass('progress-bar').addClass('progress-bar-info');
+        // progressBar.css({'width' : 100+'%'});
+        // toastr.warning('Your password contains a very common word.', 'Attention!');
+        // toastr.options.closeButton = false;
+        // toastr.options.preventDuplicates = true;
+        // toastr.options.timeOut = 4000;
+        // toastr.options.extendedTimeOut = 60;
+        // toastr.options.positionClass = "toast-top-full-width";
     }
     else{
         tip6.find("span").removeClass('glyphicon-remove-sign');
