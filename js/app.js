@@ -39,9 +39,6 @@ $(document).ready(function () {
             var password = $('#password').val().trim();
             var complexityVal = $('#complexity');
 
-            console.log(valid);
-            console.log(complexity);
-
             configureTips(password);
 
             progressBar.toggleClass('progress-bar-success', valid);
@@ -221,3 +218,42 @@ $('#password').on('passwordVisibilityChange', function () {
     $(this).focus();
 });
 
+
+// say a message
+function speak(text, callback) {
+
+    var u = new SpeechSynthesisUtterance();
+    u.text = text;
+    u.lang = 'en-US';
+
+    u.onend = function () {
+        if (callback) {
+            callback();
+        }
+    };
+
+    u.onerror = function (e) {
+        if (callback) {
+            callback(e);
+        }
+    };
+
+    speechSynthesis.speak(u);
+}
+
+
+$('#speakPasswordStrength').click(function(){
+
+    var password = $("#password").val();
+
+    if (password.length > 0) {
+
+        var strength = $("#complexity").html();
+        speak("Your password is " + strength);
+    }else {
+
+        speak("You haven't typed a password");
+    }
+
+
+});

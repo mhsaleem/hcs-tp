@@ -32,11 +32,17 @@ p#complexity {
     font-family: 'Lato', sans-serif;
 }
 
+div.pwordActions {
+
+    width: 440px;
+    display: block;
+    margin: 30px auto 0;
+}
+
 button#clipboard {
 
     font-family: 'Lato', sans-serif;
     background-color: #e67e22;
-    margin-top: 30px;
 }
 
 /* Checkboxes */
