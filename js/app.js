@@ -100,24 +100,7 @@ function configureTips(password) {
     // We can't do anything - everything is unsatisfied
     if (password.length == 0) {
 
-        tip1.removeClass('satisfied');
-        tip2.removeClass('satisfied');
-        tip3.removeClass('satisfied');
-        tip4.removeClass('satisfied');
-        tip5.removeClass('satisfied');
-        tip6.removeClass('satisfied');
-
-        tip3.find("span").removeClass('glyphicon-ok-sign');
-        tip6.find("span").removeClass('glyphicon-ok-sign');
-        tip3.find("span").addClass('glyphicon-remove-sign');
-        tip6.find("span").addClass('glyphicon-remove-sign');
-
-        if (!tip1.hasClass('unsatisfied')) tip1.addClass('unsatisfied');
-        if (!tip2.hasClass('unsatisfied')) tip2.addClass('unsatisfied');
-        if (!tip3.hasClass('unsatisfied')) tip3.addClass('unsatisfied');
-        if (!tip4.hasClass('unsatisfied')) tip4.addClass('unsatisfied');
-        if (!tip5.hasClass('unsatisfied')) tip5.addClass('unsatisfied');
-        if (!tip6.hasClass('unsatisfied')) tip6.addClass('unsatisfied');
+        resetCheckList(tip1,tip2,tip3,tip4,tip5,tip6);
 
         return;
     }
@@ -208,7 +191,33 @@ function configureTips(password) {
     }
 
 }
+    function resetCheckList(tip1,tip2,tip3,tip4,tip5,tip6){
+        tip1.removeClass();
+        tip1.addClass('unsatisfied');
+        tip2.removeClass();
+        tip2.addClass('unsatisfied');
+        tip3.removeClass();
+        tip3.addClass('unsatisfied');
+        tip4.removeClass();
+        tip4.addClass('unsatisfied');
+        tip5.removeClass();
+        tip5.addClass('unsatisfied');
+        tip6.removeClass();
+        tip6.addClass('unsatisfied');
 
+        tip1.find("span").removeClass();
+        tip1.find("span").addClass('glyphicon glyphicon-remove-sign');
+        tip2.find("span").removeClass();
+        tip2.find("span").addClass('glyphicon glyphicon-remove-sign');
+        tip3.find("span").removeClass();
+        tip3.find("span").addClass('glyphicon glyphicon-remove-sign');
+        tip4.find("span").removeClass();
+        tip4.find("span").addClass('glyphicon glyphicon-remove-sign');
+        tip5.find("span").removeClass();
+        tip5.find("span").addClass('glyphicon glyphicon-remove-sign');
+        tip6.find("span").removeClass();
+        tip6.find("span").addClass('glyphicon glyphicon-remove-sign');
+    }
 // function checkCommonWord(password){
 //     if ($.inArray(password, COMPLEXIFY_BANLIST)){
 //         $('.common-word-warning').css( "display", "block");
