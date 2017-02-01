@@ -68,7 +68,7 @@ $(document).ready(function () {
 
                 progressBar.removeClass();
                 progressBar.addClass('progress-bar').addClass('progress-bar-success');
-                complexityVal.text('Powerful');
+                complexityVal.text('Perfect');
             }
             else {
                 progressBar.removeClass();
