@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var common = false;
+
     // Show/Hide Password Init.
     // Give focus on the password field immediately. Users can type without clicking
     //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSJQueryEfficiency
@@ -32,6 +33,8 @@ $(document).ready(function () {
 
     //noinspection JSJQueryEfficiency
     $("#password").on('change keydown paste input', function () {
+
+        $("#pword_copy").val($("#password").val());
 
         $("#password").complexify({}, function (valid, complexity) {
 
